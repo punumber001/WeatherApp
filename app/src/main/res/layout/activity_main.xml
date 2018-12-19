@@ -1,18 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/location"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:gravity="center"
+        android:textSize="30sp"
+        tools:text="Hanoi"
+        android:textColor="@color/locatioin_color"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/weather_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Mostly Cloudy"
+        android:gravity="center"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="80sp"
+        tools:text="18\u00B0C"
+        android:includeFontPadding="false"
+        />
+
+    <!--<LinearLayout-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:gravity="center"-->
+        <!--&gt;-->
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/today_label"-->
+            <!--android:textAllCaps="true"-->
+            <!--android:layout_weight="4"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:paddingLeft="30dp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textSize="25sp"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/max_temp"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--tools:text="21"-->
+            <!--android:textAllCaps="true"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textAlignment="textEnd"-->
+            <!--android:paddingRight="10dp"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/min_temp"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--tools:text="14"-->
+            <!--android:textAllCaps="true"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textAlignment="textStart"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--/>-->
+
+    <!--</LinearLayout>-->
+</LinearLayout>
