@@ -131,7 +131,15 @@ public class QueryUtils {
             //get current temp
             String currentTemp = baseJsonResponse.getJSONObject("main").getString("temp");
 
-            return new Weather(currentLocation, currentWeatherStatus, currentTemp);
+            String sunrise = baseJsonResponse.getJSONObject("sys").getString("sunrise");
+            String sunset = baseJsonResponse.getJSONObject("sys").getString("sunset");
+            String humidity = baseJsonResponse.getJSONObject("main").getString("humidity");
+            String wind = baseJsonResponse.getJSONObject("wind").getString("speed");
+            String pressure = baseJsonResponse.getJSONObject("main").getString("pressure");
+            String visibility = baseJsonResponse.getString("visibility");
+
+            return new Weather(currentLocation, currentWeatherStatus, currentTemp, sunrise,
+                    sunset, humidity, wind, pressure, visibility);
 
         }catch (JSONException e)
         {

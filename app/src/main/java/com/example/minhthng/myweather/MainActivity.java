@@ -11,15 +11,39 @@ public class MainActivity extends AppCompatActivity {
     private static final String WEATHER_REQUEST_URL =
             "https://api.openweathermap.org/data/2.5/weather?id=1581130&units=metric&appid=c7247b0125a7393fdaac84f1977f7909";
 
+    private TextView location;
+    private TextView weatherStatus;
+    private TextView temp;
+    private TextView sunrise;
+    private TextView sunset;
+    private TextView humidity;
+    private TextView visibility;
+    private TextView wind;
+    private TextView pressure;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initViews();
         //start asyntask to request current weather data
         WeatherAsynTask weatherAsynTask = new WeatherAsynTask();
         weatherAsynTask.execute(WEATHER_REQUEST_URL);
 
+    }
+
+    public void initViews()
+    {
+        location = findViewById(R.id.location);
+        weatherStatus = findViewById(R.id.weather_status);
+        temp = findViewById(R.id.temperature);
+        sunrise = findViewById(R.id.sunrise_content);
+        sunset = findViewById(R.id.sunset_content);
+        humidity = findViewById(R.id.humidity_content);
+        visibility = findViewById(R.id.visibility_content);
+        wind = findViewById(R.id.wind_content);
+        pressure = findViewById(R.id.pressure_content);
     }
 
     private class WeatherAsynTask extends AsyncTask<String, Void, Weather>
@@ -38,20 +62,15 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Weather mWeather) {
-            //extract weather fields from the doInBackground return value
-            String location = mWeather.getmLocation();
-            String currentWeather = mWeather.getmWeatherStatus();
-            String temp = mWeather.getmTemperature();
-
-            //set data to the views
-            TextView mLocationTv = findViewById(R.id.location);
-            mLocationTv.setText(location);
-
-            TextView mWeatherStatus = findViewById(R.id.weather_status);
-            mWeatherStatus.setText(currentWeather);
-
-            TextView mTemp = findViewById(R.id.temperature);
-            mTemp.setText(temp);
+            location.setText(mWeather.getmLocation());
+            weatherStatus.setText(mWeather.getmWeatherStatus());
+            temp.setText(mWeather.getmTemperature() + "\u00B0C" );
+            sunrise.setText(mWeather.getSunrise());
+            sunset.setText(mWeather.getSunset());
+            humidity.setText(mWeather.getHumidity() + " %");
+            visibility.setText(mWeather.getVisibility());
+            wind.setText(mWeather.getWind() + " km/h");
+            pressure.setText(mWeather.getPressure() + " hPa");
         }
     }
 }
