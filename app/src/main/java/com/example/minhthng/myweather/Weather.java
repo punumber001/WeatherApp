@@ -11,15 +11,15 @@ public class Weather {
     //current temperature
     private String mTemperature;
 
-    private String sunrise;
-    private String sunset;
+    private long sunrise;
+    private long sunset;
     private String humidity;
     private String wind;
     private String pressure;
     private String visibility;
 
-    public Weather(String mLocation, String mWeatherStatus, String mTemperature, String sunrise,
-                   String sunset, String humidity, String wind, String pressure, String visibility) {
+    public Weather(String mLocation, String mWeatherStatus, String mTemperature, long sunrise,
+                   long sunset, String humidity, String wind, String pressure, String visibility) {
         this.mLocation = mLocation;
         this.mWeatherStatus = mWeatherStatus;
         this.mTemperature = mTemperature;
@@ -43,11 +43,11 @@ public class Weather {
         return mTemperature;
     }
 
-    public String getSunrise() {
+    public long getSunrise() {
         return sunrise;
     }
 
-    public String getSunset() {
+    public long getSunset() {
         return sunset;
     }
 

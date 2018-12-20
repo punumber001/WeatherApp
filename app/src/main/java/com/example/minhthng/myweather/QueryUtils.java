@@ -3,6 +3,7 @@ package com.example.minhthng.myweather;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 
 public class QueryUtils {
@@ -40,6 +42,26 @@ public class QueryUtils {
         Weather currentWeather = getDataFromJson(jsonResponse);
 
         return currentWeather;
+    }
+
+    public static List<HourlyWeather> getHourlyWeatherList(String requestUrl)
+    {
+        //Create URL object
+        URL url = createUrl(requestUrl);
+
+        //Perform HTTP request to the URL and receive a JSON response
+        String jsonResponse = null;
+        try{
+            jsonResponse = makeHttpRequest(url);
+        }catch (IOException e)
+        {
+            Log.e(TAG, "Error in making HTTP request.", e);
+        }
+
+        //init Weather objects from JSON response and create a list to store
+        List<HourlyWeather> hourlyWeatherList = getHourlyWeatherFromJson(jsonResponse);
+
+        return hourlyWeatherList;
     }
 
     //Return new URL object from the given string URL
@@ -131,8 +153,10 @@ public class QueryUtils {
             //get current temp
             String currentTemp = baseJsonResponse.getJSONObject("main").getString("temp");
 
-            String sunrise = baseJsonResponse.getJSONObject("sys").getString("sunrise");
-            String sunset = baseJsonResponse.getJSONObject("sys").getString("sunset");
+            long sunrise = baseJsonResponse.getJSONObject("sys").getLong("sunrise") * 1000;
+            Log.d(TAG, "Sunrise time: " + sunrise);
+            long sunset = baseJsonResponse.getJSONObject("sys").getLong("sunset") * 1000;
+            Log.d(TAG, "Sunset time: " + sunset);
             String humidity = baseJsonResponse.getJSONObject("main").getString("humidity");
             String wind = baseJsonResponse.getJSONObject("wind").getString("speed");
             String pressure = baseJsonResponse.getJSONObject("main").getString("pressure");
@@ -147,5 +171,36 @@ public class QueryUtils {
         }
 
         return null;
+    }
+
+    private static List<HourlyWeather> getHourlyWeatherFromJson(String hourlyWeatherJSON)
+    {
+        if(TextUtils.isEmpty(hourlyWeatherJSON))
+        {
+            return null;
+        }
+
+        List<HourlyWeather> hourlyWeatherList = new ArrayList<>();
+
+        try{
+            JSONObject baseJsonResponse = new JSONObject(hourlyWeatherJSON);
+            JSONArray hourlyWeatherArray = baseJsonResponse.getJSONArray("list");
+
+            for(int i = 0; i < hourlyWeatherArray.length(); i++)
+            {
+                JSONObject hourlyWeather = hourlyWeatherArray.getJSONObject(i);
+
+                long dateTime = hourlyWeather.getLong("dt") * 1000;
+                String weatherId = hourlyWeather.getJSONArray("weather").getJSONObject(0).getString("id");
+                String temp = hourlyWeather.getJSONObject("main").getString("temp");
+
+                HourlyWeather mhourlyWeather = new HourlyWeather(dateTime, weatherId, temp);
+                hourlyWeatherList.add(mhourlyWeather);
+            }
+        }catch (JSONException e)
+        {
+            Log.e(TAG, "Error parsing weather JSON results", e);
+        }
+        return hourlyWeatherList;
     }
 }

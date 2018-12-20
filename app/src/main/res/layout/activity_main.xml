@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,15 +41,9 @@
             />
     </LinearLayout>
 
-    <View
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
-
     <TableLayout
-        android:layout_margin="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TableRow>
@@ -59,12 +54,14 @@
                 android:orientation="vertical"
                 >
                 <TextView
+                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="SUNRISE"
                     />
                 <TextView
+                    android:gravity="center_horizontal"
                     android:id="@+id/sunrise_content"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -79,12 +76,14 @@
                 android:orientation="vertical"
                 >
                 <TextView
+                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="SUNSET"
                     />
                 <TextView
+                    android:gravity="center_horizontal"
                     android:id="@+id/sunset_content"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -96,6 +95,8 @@
         <View
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="45dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"/>
@@ -107,12 +108,14 @@
                 android:orientation="vertical"
                 >
                 <TextView
+                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="HUMIDITY"
                     />
                 <TextView
+                    android:gravity="center_horizontal"
                     android:id="@+id/humidity_content"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -127,12 +130,14 @@
                 android:orientation="vertical"
                 >
                 <TextView
+                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="VISIBILITY"
                     />
                 <TextView
+                    android:gravity="center_horizontal"
                     android:id="@+id/visibility_content"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -144,6 +149,8 @@
         <View
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="45dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"/>
@@ -155,12 +162,14 @@
                 android:orientation="vertical"
                 >
                 <TextView
+                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="WIND"
                     />
                 <TextView
+                    android:gravity="center_horizontal"
                     android:id="@+id/wind_content"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -175,12 +184,14 @@
                 android:orientation="vertical"
                 >
                 <TextView
+                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="PRESSURE"
                     />
                 <TextView
+                    android:gravity="center_horizontal"
                     android:id="@+id/pressure_content"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -192,9 +203,14 @@
 
     </TableLayout>
     <View
-        android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"/>
+    <ListView
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:id="@+id/hourly_weather"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ListView>
 </LinearLayout>
